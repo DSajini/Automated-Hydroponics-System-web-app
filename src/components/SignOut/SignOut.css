@@ -1,0 +1,20 @@
+h1 { 
+	/*color:#0B610B  ;*/ 
+	/*color:#0A122A  ;*/ 
+	color:black;
+	font-weight: 900; 
+	text-shadow: 0 0 120px rgba(0,0,0,0.3); 
+	letter-spacing:5px; 
+	text-align:center;
+	font-size: 100px; 
+}
+
+
+
+
+h3 { color:#1C3C1C  ; 
+	font-weight: bold; 
+	text-shadow: 0 0 10px rgba(0,0,0,0.3); 
+	letter-spacing:1px; 
+	text-align:center; 
+}
