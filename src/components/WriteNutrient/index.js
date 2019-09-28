@@ -24,18 +24,25 @@ constructor(props){
 openModal() {
   var curuser='';
 
+  var date = new Date().getDate(); //Current Date
+  if(date<10){
+    date='0'+date;
+  }
+  var month = new Date().getMonth() + 1; //Current Month
+  if(month<10){
+    month='0'+month;
+  }
+  var year = new Date().getFullYear(); //Current Year
+ var fulldate= year  +''+ month+''  + date;
+
+
   if (firebase.auth().currentUser !== null) 
   curuser= firebase.auth().currentUser.uid;
 
-  /*for nod MCU database
-  const rootRefup=firebase.database().ref().child("/ESP8266_Test/User 0/Node 1/20190828/Commands");     //update
-  const rootRef=firebase.database().ref().child("/ESP8266_Test/User 0/Node 1/20190828/Commands/NutriC");  //read addition 
   
-  */
-
   //for  prototype database
-  const rootRefup=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/20190915/Commands');     //update
-  const rootRef=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/20190915/Commands/NutriC');  //read addition 
+  const rootRefup=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Commands');     //update
+  const rootRef=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Commands/NutriC');  //read addition 
   
   rootRef.on('value',snap=>{
     this.setState({
