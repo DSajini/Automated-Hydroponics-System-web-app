@@ -40,7 +40,7 @@ const NavigationNonAuth = () => (
 const NavigationAuth = () => (
   
 <Navbar bg="dark" variant="dark">
-<Navbar.Brand align="center" href="#home">Smartponics</Navbar.Brand>
+<Navbar.Brand align="center" href="#home">Autoponics</Navbar.Brand>
 <Nav className="mr-auto">
   
   

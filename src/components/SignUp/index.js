@@ -7,9 +7,15 @@ import * as ROUTES from '../../constants/routes';
 import './SignUp.css';
 
 const SignUpPage = () => (
-  <div>
+  <div class="bg">
     <h1>SignUp</h1>
+    
     <SignUpForm />
+    <br></br>
+    <br></br>
+    <br></br>
+    
+    
   </div>
 );
 

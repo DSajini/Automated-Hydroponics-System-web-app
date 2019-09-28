@@ -7,3 +7,8 @@ h6 {
 	text-align:center;
 	font-size: 50px; 
 }
+
+.bg{
+	background-image: url("background.jpg");
+	background-size: auto;
+}
