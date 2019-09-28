@@ -37,98 +37,71 @@ openModal() {
  var fulldate= year  +''+ month+''  + date;
 
 
-  /*for node MCU database
-  const rootRefup=firebase.database().ref().child("/ESP8266_Test/User 0/Node 1/20190828/Commands");     //update command
-  const rootRefupst=firebase.database().ref().child("/ESP8266_Test/User 0/Node 1/20190828/Light_Status/Current");     //update status
-  const rootRef=firebase.database().ref().child("/ESP8266_Test/User 0/Node 1/20190828/Commands/LightC");  //read
-  */
-
+  
 
  if (firebase.auth().currentUser !== null) 
   curuser= firebase.auth().currentUser.uid;
-// name= firebase.auth().currentUser.email;
-/*
-    var id =event.target.id;
-    //console.log(id);
-    var x = document.getElementById(id).value;
-*/
 
-  //for prototype database
-  //const rootRefup=firebase.database().ref().child("/ESP8266_Test/ESP8266_Test/User 0/Node 1/20190915/Commands");     //update command
+
+  
  
  
  
- /*
-  const rootRefupst=firebase.database().ref().child("/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-'+x+'/20190915/Light_Status/Current"); //update status
-  const rootRef=firebase.database().ref().child("/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-'+x+'/20190915/Light_Status/Current/Light1");  //read
-*/
 
 
-
-  //const rootRefupst=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/20190915/Light_Status/Current'); //update status
-  const rootRefupst=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Light_Status/Current'); //update status
-  const rootRef=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Light_Status/Current/Light1');  //read
+  const rootupcom=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Commands'); //update command
+  const rootreadlight=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Light_Status/Current/Light1'); //read status
+  const rootreadcom=firebase.database().ref().child('/ESP8266_Test/ESP8266_Test/'+curuser+'/NODE-1/'+fulldate+'/Commands/LightC');  //read command
   
 
 
 
-  rootRef.on('value',snap=>{
+  rootreadlight.on('value',snap=>{
     this.setState({
      Light1:snap.val()
    });
   });
- /*
-  if (this.state.LightC==true){
+ 
+
+  rootreadcom.on('value',snap=>{
+    this.setState({
+     LightC:snap.val()
+   });
+  });
+
+
+  if (this.state.Light1==true){
   
-    rootRefup.update ({
-      "LightC": 1,
+    rootupcom.update ({
+      "LightC": 0,
       });
 
-      rootRefupst.update ({
-        "Light1": 0,
-        });
+     
   
 
     
  }
 
-    if(this.state.LightC==false){
-    rootRefup.update ({
-      "LightC": 1,
+    if(this.state.Light1==false){
+    rootupcom.update ({
+      "LightC":1,
       });
 
-      rootRefupst.update ({
-        "Light1": 1,
-        });
-  
+     
 
   }
- */
 
- if(this.state.Light1==true){
-  rootRefupst.update ({
-    "Light1": 0,
-    });
 
- }
- if(this.state.Light1==false){
-  rootRefupst.update ({
-    "Light1": 1,
-    });
- }
-  
+
 }
 
-
-  
-
 render() {
-   const { LightC,Light1 } = this.state;
+  const { LightC,Light1 } = this.state;
       if (this.state.Light1==true){
           return(
                 <div class="wrapper">
                   
-                       <button onClick={this.openModal}>switch on lights</button>
+                       <button onClick={this.openModal}>switch off lights</button>
                       
 
                  
@@ -138,7 +111,7 @@ render() {
       else if(this.state.Light1==false){
           return (
                  <div class="wrapper">
-                       <button onClick={this.openModal}>switch off lights</button>
+                       <button onClick={this.openModal}>switch on lights</button>
                        
                  </div>
         );
@@ -148,6 +121,4 @@ render() {
 
 
 }
-
-
 export default withFirebase(WriteData);

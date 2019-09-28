@@ -119,10 +119,10 @@ class DisplayUnits extends React.Component {
     var curuser='';
     var name='';
     
-    if(Light1==1){
+    if(Light1==0){
       lightstatus='OFF';
     }
-    else if(Light1==0){
+    else if(Light1==1){
       lightstatus='ON';
     }
     if(Water1==1){
